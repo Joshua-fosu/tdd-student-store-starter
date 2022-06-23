@@ -2,7 +2,13 @@ import * as React from "react";
 import "./Home.css";
 import Product from "../Product/Product";
 
-export default function Home({ products, activeCategory, queryProduct }) {
+export default function Home({
+  products,
+  activeCategory,
+  queryProduct,
+  cartItems,
+  setCartItems,
+}) {
   let products_filtered = products.filter((product, idx) => {
     if (activeCategory === "All Categories") {
       return true;
@@ -21,15 +27,6 @@ export default function Home({ products, activeCategory, queryProduct }) {
   }
 
   let toDisplay = products_filtered.length !== 0;
-  console.log(toDisplay);
-
-  // const toDisplay = () => {
-  //   if (products_filtered) {
-  //     products_filtered.map((product, idx) => {
-  //       return <Product key={idx} product={product} />;
-  //     });
-  //   }
-  // };
 
   return (
     <div className="home">
@@ -38,7 +35,12 @@ export default function Home({ products, activeCategory, queryProduct }) {
         <div className="grid">
           {toDisplay ? (
             products_filtered.map((product, idx) => (
-              <Product key={idx} product={product} />
+              <Product
+                key={idx}
+                product={product}
+                cartItems={cartItems}
+                setCartItems={setCartItems}
+              />
             ))
           ) : (
             <h2>No Products to display!!!</h2>

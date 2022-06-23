@@ -1,6 +1,7 @@
 .product_container{
     width: 250px;
     height: 350px;
+    min-height: fit-content !important;
 }
 
 
@@ -14,4 +15,13 @@
     height: 250px;
     max-height: 250px !important;
     object-fit: fill;
+}
+
+p {
+    margin: 0;
+}
+
+.to_display{
+    display: block;
+    min-height: fit-content;
 }
