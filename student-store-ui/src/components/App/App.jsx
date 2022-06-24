@@ -1,20 +1,25 @@
 import * as React from "react";
-import Navbar from "../Navbar/Navbar";
+import Navvbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 import Home from "../Home/Home";
 import Hero from "../Hero/Hero";
 import Sub_navbar from "../sub_navbar/Sub_navbar";
-import ProductPage from "../ProductPage/ProductPage";
+import ProductDetail from "../ProductDetail/ProductDetail";
+import About from "../About/About";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useRoutes } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import { useState, useEffect } from "react";
 
 export default function App() {
-  const [data, setData] = useState([]);
+  const [products, setProducts] = useState([]);
   const [activeCategory, setActiveCategory] = useState("All Categories");
   const [queryProduct, setQueryProduct] = useState("");
-  const [cartItems, setCartItems] = useState([]);
+  const [shoppingCart, setCartItems] = useState([]);
+  const [isOpen, setIsOpen] = useState("closed");
+  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
 
   useEffect(() => {
     async function fetchData() {
@@ -22,7 +27,7 @@ export default function App() {
         "https://codepath-store-api.herokuapp.com/store"
       );
       const result = await response.json();
-      setData(result.products);
+      setProducts(result.products);
     }
     fetchData();
   }, []);
@@ -31,33 +36,54 @@ export default function App() {
     <div className="app">
       <BrowserRouter>
         <main>
-          <Sidebar />
-          <Navbar />
-          <Hero />
-          <Sub_navbar
-            activeCategory={activeCategory}
-            setActiveCategory={setActiveCategory}
-            setQueryProduct={setQueryProduct}
-            queryProduct={queryProduct}
-          />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Home
-                  products={data}
-                  activeCategory={activeCategory}
-                  queryProduct={queryProduct}
-                  cartItems={cartItems}
-                  setCartItems={setCartItems}
-                />
-              }
+          <div className="sidebar_div">
+            <Sidebar
+              cartItems={shoppingCart}
+              setSideBarStatus={setIsOpen}
+              sideBarStatus={isOpen}
+              userName={userName}
+              setUserName={setUserName}
+              userEmail={userEmail}
+              setUserEmail={setUserEmail}
             />
-            <Route
-              path="/products/:product_id"
-              element={<ProductPage products={data} />}
+          </div>
+          <div className="main_page_div">
+            <Navvbar
+              queryProduct={queryProduct}
+              setQueryProduct={setQueryProduct}
             />
-          </Routes>
+            <Hero />
+            <Sub_navbar
+              activeCategory={activeCategory}
+              setActiveCategory={setActiveCategory}
+              setQueryProduct={setQueryProduct}
+              queryProduct={queryProduct}
+            />
+            <Routes>
+              <Route
+                path=""
+                element={
+                  <Home
+                    products={products}
+                    activeCategory={activeCategory}
+                    queryProduct={queryProduct}
+                    cartItems={shoppingCart}
+                    setCartItems={setCartItems}
+                  />
+                }
+              />
+              <Route
+                path="/products/:product_id"
+                element={
+                  <ProductDetail
+                    products={products}
+                    cartItems={shoppingCart}
+                    setCartItems={setCartItems}
+                  />
+                }
+              />
+            </Routes>
+          </div>
         </main>
       </BrowserRouter>
     </div>

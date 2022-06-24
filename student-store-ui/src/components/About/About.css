@@ -1,0 +1,31 @@
+.about_page_container{
+    /* margin-top: 45px; */
+}
+
+
+.about_page {
+    padding-top: 50px;
+    height: 400px;
+    min-height: fit-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.about_page_half{
+    width: 50%;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
+
+.background_img{
+    background-image: url("https://i.pinimg.com/736x/0a/24/2a/0a242a98d4140e6c9cdc4fef6d025c74.jpg");
+    background-size: fill;
+    background-position: center;
+    background-repeat: no-repeat;
+}

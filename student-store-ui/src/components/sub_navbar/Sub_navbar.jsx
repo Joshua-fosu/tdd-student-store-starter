@@ -14,21 +14,15 @@ function sub_navbar({
   }
 
   function toggleDisplay(event) {
-    display =
-      display === "display_block"
-        ? setDisplay("display_none")
-        : setDisplay("display_block");
+    display === "display_block"
+      ? setDisplay("display_none")
+      : setDisplay("display_block");
   }
 
   return (
     <div className="sub_navbar">
-      <Search_Navbar
-        setQueryProduct={setQueryProduct}
-        queryProduct={queryProduct}
-      />
-
       <div className="sub_navbar_categories">
-        <button onClick={toggleDisplay}>Click</button>
+        {/* <button onClick={toggleDisplay}>Click</button> */}
         <ul className={display}>
           <li
             onClick={handleOnClickCategory}
@@ -79,7 +73,11 @@ export function Search_Navbar({ setQueryProduct, queryProduct }) {
   return (
     <div className="">
       <form action="">
-        <input onChange={handleQueryProduct} value={queryProduct} />
+        <input
+          onChange={handleQueryProduct}
+          value={queryProduct}
+          placeholder="Search items..."
+        />
       </form>
     </div>
   );

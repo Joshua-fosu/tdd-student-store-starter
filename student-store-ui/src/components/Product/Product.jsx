@@ -1,32 +1,36 @@
 import React from "react";
 import "./Product.css";
-import { Link } from "react-router-dom";
+import { Link, Routes, Route } from "react-router-dom";
+import ProductDetail from "../ProductDetail/ProductDetail";
+import { Card } from "react-bootstrap";
 
-function Product({ product, cartItems, setCartItems }) {
+function Product({ product, cartItems, setCartItems, data }) {
   let individualCartItem = cartItems.filter((cartItem) => {
     return cartItem.id === product.id;
   });
-  console.log(product.id, individualCartItem);
   return (
-    <div className="product_container">
+    <Card className="product_container">
       <Link to={"/products/" + product.id}>
-        <div className="product_img_container">
-          <img src={product.image} alt="" srcset="" className="product_img" />
-        </div>
+        <Card.Img variant="top" src={product.image} className="product_img" />
       </Link>
-      <div>
-        <p>{product.name}</p>
-        <p>${product.price}</p>
 
-        <HandleRemoveAddItemsToCart
-          product_id={product.id}
-          cartItems={cartItems}
-          setCartItems={setCartItems}
-          product_price={product.price}
-        />
-        <p className="to_display">{individualCartItem[0]?.number}</p>
-      </div>
-    </div>
+      <Card.Body>
+        <Card.Title>{product.name}</Card.Title>
+        <Card.Text>${product.price}</Card.Text>
+      </Card.Body>
+      <Card.Footer>
+        <small className="text-muted">
+          <HandleRemoveAddItemsToCart
+            product_id={product.id}
+            cartItems={cartItems}
+            setCartItems={setCartItems}
+            product_price={product.price}
+            product_name={product.name}
+          />
+          {individualCartItem[0]?.number}
+        </small>
+      </Card.Footer>
+    </Card>
   );
 }
 
@@ -35,6 +39,7 @@ export function HandleRemoveAddItemsToCart({
   cartItems,
   setCartItems,
   product_price,
+  product_name,
 }) {
   let isInCartAlready = cartItems.find((cartItem, idx) => {
     return cartItem.id === product_id;
@@ -60,10 +65,10 @@ export function HandleRemoveAddItemsToCart({
         id: product_id,
         number: 1,
         product_price: product_price,
+        product_name: product_name,
       };
       setCartItems([...cartItems, newCartItem]);
     }
-    console.log(cartItems);
   }
 
   function handleRemoveItem() {

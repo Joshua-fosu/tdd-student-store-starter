@@ -1,9 +1,12 @@
-.sidebar{
-    position: fixed;
-    width: 3%;  
-    min-height: 100vh;
-    left: 0;
-    top: 0;
-    background-color: darkslategray;
-    z-index: 100;
+.closed{
+    width: 25px;
+    height: 100%;
+}
+
+.opened{
+    width: 650px;
+}
+
+th, td {
+    padding: 7px;
 }

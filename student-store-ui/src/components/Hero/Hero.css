@@ -1,5 +1,13 @@
 .hero{
-    margin-left: 3.3%;
-    min-height: 35vh;
-    background-color: aqua;
+    
+}
+
+.my_carousel{
+    max-height: 100%;
+}
+
+.img_container{
+    max-height: 600px !important;
+    object-fit: cover;
+    object-position: center;
 }

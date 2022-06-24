@@ -1,6 +1,9 @@
 import * as React from "react";
 import "./Home.css";
 import Product from "../Product/Product";
+import About from "../About/About";
+import Contact from "../Contact/Contact";
+import Footer from "../Footer/Footer";
 
 export default function Home({
   products,
@@ -29,24 +32,30 @@ export default function Home({
   let toDisplay = products_filtered.length !== 0;
 
   return (
-    <div className="home">
-      <div className="products">
-        <h3>Best Selling Products</h3>
-        <div className="grid">
-          {toDisplay ? (
-            products_filtered.map((product, idx) => (
-              <Product
-                key={idx}
-                product={product}
-                cartItems={cartItems}
-                setCartItems={setCartItems}
-              />
-            ))
-          ) : (
-            <h2>No Products to display!!!</h2>
-          )}
-        </div>
+    // <div className="home">
+    //   <div className="products">
+    <>
+      <h3>Best Selling Products</h3>
+      <div className="grid">
+        {toDisplay ? (
+          products_filtered.map((product, idx) => (
+            <Product
+              key={idx}
+              product={product}
+              cartItems={cartItems}
+              setCartItems={setCartItems}
+              data={products}
+            />
+          ))
+        ) : (
+          <h2>No Products to display!!!</h2>
+        )}
       </div>
-    </div>
+      <About />
+      <Contact />
+      <Footer />
+    </>
+    //   </div>
+    // </div>
   );
 }
