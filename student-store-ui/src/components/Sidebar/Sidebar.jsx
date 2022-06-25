@@ -12,6 +12,7 @@ export default function Sidebar({
   setUserName,
   userEmail,
   setUserEmail,
+  setCartItems,
 }) {
   console.log("cartItems", cartItems);
 
@@ -41,7 +42,7 @@ export default function Sidebar({
 
   if (sideBarStatus === "opened")
     n = (
-      <div>
+      <div className="opened">
         <ArrowBackIosNewIcon onClick={handleSideBarToggle} />
         <h2>Shopping Cart</h2>
         {cartItems.length !== 0 ? (
@@ -82,7 +83,7 @@ export default function Sidebar({
             </tr>
           </table>
         ) : (
-          <p>{}</p>
+          <p>No products added to Cart</p>
         )}
 
         <h2>Payment Info</h2>
@@ -92,6 +93,9 @@ export default function Sidebar({
           cartItems={cartItems}
           userEmail={userEmail}
           setUserEmail={setUserEmail}
+          subTotal={subTotal}
+          total={total}
+          setCartItems={setCartItems}
         />
       </div>
     );

@@ -1,0 +1,8 @@
+.display_block_require {
+    display: block;
+    height: 15px;
+}
+
+.hide_block_require {
+    display: none;
+}

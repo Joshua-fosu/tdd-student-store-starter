@@ -11,13 +11,6 @@
   flex-direction: row;
 }
 
-.sidebar_div{
-  width: auto;
-  min-width: 25px;
-  min-height: 100vh;
-  
-}
-
 .main_page_div{
   width: 96%;
   height: fit-content;

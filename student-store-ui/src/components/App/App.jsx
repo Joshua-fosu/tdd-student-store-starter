@@ -45,6 +45,7 @@ export default function App() {
               setUserName={setUserName}
               userEmail={userEmail}
               setUserEmail={setUserEmail}
+              setCartItems={setCartItems}
             />
           </div>
           <div className="main_page_div">

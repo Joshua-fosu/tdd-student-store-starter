@@ -8,7 +8,10 @@ function ProductPage({ products, cartItems, setCartItems }) {
   let product = products.find((product, idx) => {
     return product.id.toString() === urlParams.product_id;
   });
-  console.log("detail", product);
+  let product_cart = cartItems.find((cartItem) => {
+    return product.id === cartItem.id;
+  });
+
   return (
     <div className="product_page_container">
       <h1>Product #{urlParams.product_id}</h1>
@@ -33,7 +36,7 @@ function ProductPage({ products, cartItems, setCartItems }) {
             />
           </div>
           <div style={{ width: "30%", textAlign: "right" }}>
-            <p>{product.price}</p>
+            <p>{product_cart?.number}</p>
           </div>
         </div>
       </div>

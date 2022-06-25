@@ -29,8 +29,8 @@ export default function Navvbar({ queryProduct, setQueryProduct }) {
             <Link to="/">
               <Nav.Link href="/">Home</Nav.Link>
             </Link>
-            <Nav.Link href="/#about">About</Nav.Link>
-            <Nav.Link href="/#contact">Contact Us</Nav.Link>
+            <Nav.Link href="../../#about">About</Nav.Link>
+            <Nav.Link href="../../#contact">Contact Us</Nav.Link>
           </Nav>
           <Form className="d-flex">
             <Search_Navbar
