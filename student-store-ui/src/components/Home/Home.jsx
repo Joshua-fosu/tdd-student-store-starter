@@ -32,8 +32,6 @@ export default function Home({
   let toDisplay = products_filtered.length !== 0;
 
   return (
-    // <div className="home">
-    //   <div className="products">
     <>
       <h3>Best Selling Products</h3>
       <div className="grid">
@@ -55,7 +53,5 @@ export default function Home({
       <Contact />
       <Footer />
     </>
-    //   </div>
-    // </div>
   );
 }

@@ -22,7 +22,6 @@ function sub_navbar({
   return (
     <div className="sub_navbar">
       <div className="sub_navbar_categories">
-        {/* <button onClick={toggleDisplay}>Click</button> */}
         <ul className={display}>
           <li
             onClick={handleOnClickCategory}
