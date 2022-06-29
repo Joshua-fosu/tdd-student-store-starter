@@ -23,9 +23,7 @@ export default function App() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(
-        "https://codepath-store-api.herokuapp.com/store"
-      );
+      const response = await fetch("http://localhost:3001/store/");
       const result = await response.json();
       setProducts(result.products);
     }
