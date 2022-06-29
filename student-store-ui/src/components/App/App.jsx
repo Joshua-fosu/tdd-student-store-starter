@@ -9,6 +9,7 @@ import About from "../About/About";
 import "./App.css";
 import { BrowserRouter, Routes, Route, useRoutes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
 
 import { useState, useEffect } from "react";
 
@@ -23,9 +24,14 @@ export default function App() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch("http://localhost:3001/store/");
-      const result = await response.json();
-      setProducts(result.products);
+      try {
+        const response = await axios.get("http://localhost:3001/store/");
+
+        console.log("response", response);
+        setProducts(response.data.products);
+      } catch (err) {
+        console.log(err);
+      }
     }
     fetchData();
   }, []);

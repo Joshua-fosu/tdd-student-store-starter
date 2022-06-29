@@ -2,7 +2,7 @@ import React from "react";
 import "./Sub_navbar.css";
 import { useState } from "react";
 
-function sub_navbar({
+function SubNavBar({
   activeCategory,
   setActiveCategory,
   setQueryProduct,
@@ -71,7 +71,7 @@ export function Search_Navbar({ setQueryProduct, queryProduct }) {
 
   return (
     <div className="">
-      <form action="">
+      <form>
         <input
           onChange={handleQueryProduct}
           value={queryProduct}
@@ -82,4 +82,4 @@ export function Search_Navbar({ setQueryProduct, queryProduct }) {
   );
 }
 
-export default sub_navbar;
+export default SubNavBar;

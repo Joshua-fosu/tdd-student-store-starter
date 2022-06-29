@@ -14,14 +14,12 @@ export default function Sidebar({
   setUserEmail,
   setCartItems,
 }) {
-  console.log("cartItems", cartItems);
-
   let subTotal = 0;
   cartItems.forEach((cartItem) => {
     subTotal += cartItem.product_price * cartItem.number;
   });
 
-  let tax = 0.3 * subTotal;
+  let tax = 0.0875 * subTotal;
 
   let total = tax + subTotal;
   subTotal = subTotal.toFixed(2);

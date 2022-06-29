@@ -16,7 +16,8 @@ function Checkout({
 }) {
   const [isCheckedOut, setIsCheckedOut] = useState("false");
   const [isRequireDetail, setIsRequireDetail] = useState("false");
-  const [requiredDetail, setRequiredDetail] = useState("");
+  // const [requiredDetail, setRequiredDetail] = useState("");
+  const [receipt, setReceipt] = useState([]);
 
   let requireItem = "";
 
@@ -28,23 +29,23 @@ function Checkout({
     requireItem = <p>Please include your name and email</p>;
   }
 
-  function requireUserEmail() {
-    requireItem = <p>Please include your name and email</p>;
-  }
+  // function requireUserEmail() {
+  //   requireItem = <p>Please include your name and email</p>;
+  // }
 
   async function handleCheckout(event) {
     event.preventDefault();
     let arr = [];
-    const URL = "https://codepath-store-api.herokuapp.com/store";
+    const URL = "http://localhost:3001/store/";
 
     if (userName === "") {
       requireItem = <p>Please include your name and email</p>;
       setIsRequireDetail("true");
     } else if (userEmail === "") {
-      requireUserName;
+      requireUserName();
       setIsRequireDetail("true");
     } else if (cartItems.length === 0) {
-      requireCartItems;
+      requireCartItems();
       setIsRequireDetail("true");
     } else if (
       userName !== null &&
@@ -52,20 +53,27 @@ function Checkout({
       cartItems.length !== 0
     ) {
       setIsRequireDetail("false");
+
       cartItems.forEach((cartItem) => {
         arr.push({ itemId: cartItem.id, quantity: cartItem.number });
       });
 
-      const new_Receipt = {
+      const userPurchase = {
         user: {
           name: userName,
           email: userEmail,
         },
-        shoppingCart: arr,
+        shoppingCart: cartItems,
       };
+      console.log("userPurchase: ", userPurchase);
       try {
-        const res = await axios.post(URL, new_Receipt);
+        const res = await axios.post(URL, userPurchase);
+        console.log("res", res.data);
+        setReceipt(res.data);
         setIsCheckedOut("true");
+        setUserEmail("");
+        setUserName("");
+        setCartItems([]);
       } catch (err) {}
     }
   }
@@ -122,6 +130,7 @@ function Checkout({
         ) : (
           <p>
             <Receipt
+              purchaseObject={receipt}
               cartItems={cartItems}
               userEmail={userEmail}
               userName={userName}
