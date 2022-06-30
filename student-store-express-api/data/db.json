@@ -146,5 +146,19 @@
     }
   ],
   "purchases": [
+    {
+      "id": 1,
+      "name": "Josh",
+      "email": "hds",
+      "order": [
+        {
+          "id": 3,
+          "number": 9,
+          "product_price": 7
+        }
+      ],
+      "total": "68.51",
+      "createdAt": "6/30/2022, 10:48:57 AM"
+    }
   ]
 }
