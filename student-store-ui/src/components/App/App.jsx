@@ -10,6 +10,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route, useRoutes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
+import Orders from "../Orders/Orders";
 
 import { useState, useEffect } from "react";
 
@@ -58,6 +59,7 @@ export default function App() {
               setQueryProduct={setQueryProduct}
             />
             <Hero />
+
             <Sub_navbar
               activeCategory={activeCategory}
               setActiveCategory={setActiveCategory}
@@ -77,6 +79,7 @@ export default function App() {
                   />
                 }
               />
+              <Route path="/orders/" element={<Orders />} />
               <Route
                 path="/products/:product_id"
                 element={

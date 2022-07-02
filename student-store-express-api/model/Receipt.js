@@ -1,5 +1,6 @@
 const { storage } = require("../data/storage.js");
 var current = new Date();
+const data = require("../data/db.json");
 
 class Receipt {
   constructor() {
@@ -25,6 +26,7 @@ class Receipt {
       createdAt: current.toLocaleString(),
     };
     storage.add("purchases", purchase);
+    data.purchases.push(purchase);
     return { purchase: purchase };
   }
 }

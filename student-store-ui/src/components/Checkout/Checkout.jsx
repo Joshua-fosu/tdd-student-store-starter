@@ -29,13 +29,8 @@ function Checkout({
     requireItem = <p>Please include your name and email</p>;
   }
 
-  // function requireUserEmail() {
-  //   requireItem = <p>Please include your name and email</p>;
-  // }
-
   async function handleCheckout(event) {
     event.preventDefault();
-    let arr = [];
     const URL = "http://localhost:3001/store/";
 
     if (userName === "") {
@@ -54,21 +49,16 @@ function Checkout({
     ) {
       setIsRequireDetail("false");
 
-      cartItems.forEach((cartItem) => {
-        arr.push({ itemId: cartItem.id, quantity: cartItem.number });
-      });
-
-      const userPurchase = {
+      let userPurchase = {
         user: {
           name: userName,
           email: userEmail,
         },
         shoppingCart: cartItems,
       };
-      console.log("userPurchase: ", userPurchase);
       try {
         const res = await axios.post(URL, userPurchase);
-        console.log("res", res.data);
+        userPurchase = {};
         setReceipt(res.data);
         setIsCheckedOut("true");
         setUserEmail("");

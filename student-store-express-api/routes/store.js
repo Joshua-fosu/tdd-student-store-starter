@@ -19,17 +19,16 @@ store.post("/", (req, res) => {
     var shoppingCart = req.body.shoppingCart;
     const unique_products = new Set(shoppingCart.map((v) => v.id));
     if (shoppingCart.length !== unique_products.size) {
-      console.log("unique", unique_products);
       res.status(400).send({ shoppingCart, new_products: unique_products });
     } else {
       shoppingCart.forEach((item) => {
         if (!(item.id && item.number)) {
           res.status(400).send("Missing Item ID/ quantity for some items");
-        } else {
-          const receipt = Receipt.generateReceipt(req.body);
-          res.status(201).send(receipt);
         }
       });
+
+      const receipt = Receipt.generateReceipt(req.body);
+      res.status(201).send(receipt);
     }
   } else {
     res.status(400).send("Error");

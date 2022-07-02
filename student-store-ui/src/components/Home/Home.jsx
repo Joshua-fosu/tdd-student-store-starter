@@ -4,6 +4,7 @@ import Product from "../Product/Product";
 import About from "../About/About";
 import Contact from "../Contact/Contact";
 import Footer from "../Footer/Footer";
+import { Link } from "react-router-dom";
 
 export default function Home({
   products,
@@ -33,6 +34,10 @@ export default function Home({
 
   return (
     <>
+      <Link to="/orders/">
+        <button>Orders</button>
+      </Link>
+
       <h3>Best Selling Products</h3>
       <div className="grid">
         {toDisplay ? (

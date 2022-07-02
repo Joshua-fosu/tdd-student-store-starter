@@ -15,9 +15,6 @@ function Receipt({
 }) {
   function handleShopMore() {
     setIsCheckedOut("false");
-    setCartItems([]);
-    setUserEmail("");
-    setUserName("");
   }
 
   return (
